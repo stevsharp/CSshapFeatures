@@ -1,4 +1,6 @@
 ﻿
+using ReflectionDemo;
+
 using System;
 using System.Diagnostics;
 
@@ -8,23 +10,25 @@ class Program
     {
 
         // Step 1: Create an instance of IHelloWorldService implementation
-        IHelloWorldService helloWorldService = new HelloWorldService();
-        IHelloWorldService1 helloWorldService1 = new HelloWorldService1();
+        //IHelloWorldService helloWorldService = new HelloWorldService();
+        //IHelloWorldService1 helloWorldService1 = new HelloWorldService1();
 
-        var list = new List<object>
-        {
-            helloWorldService,
-            helloWorldService1
-        };
+        //var list = new List<object>
+        //{
+        //    helloWorldService,
+        //    helloWorldService1
+        //};
 
 
-        // Step 2: Use Activator.CreateInstance to create an instance of MyProgram
-        // and pass in the IHelloWorldService instance as a parameter
-        //MyProgram myProgramInstance = (MyProgram)Activator.CreateInstance(typeof(MyProgram), new object[] { helloWorldService, helloWorldService1 });
-        MyProgram myProgramInstance = (MyProgram)Activator.CreateInstance(typeof(MyProgram), list.ToArray());
+        //// Step 2: Use Activator.CreateInstance to create an instance of MyProgram
+        //// and pass in the IHelloWorldService instance as a parameter
+        ////MyProgram myProgramInstance = (MyProgram)Activator.CreateInstance(typeof(MyProgram), new object[] { helloWorldService, helloWorldService1 });
+        //var myProgramInstance = (MyProgram)Activator.CreateInstance(typeof(MyProgram), list.ToArray());
 
-        // Optional: Call the Run method on MyProgram instance
-        myProgramInstance.Run();
+        //// Optional: Call the Run method on MyProgram instance
+        //myProgramInstance.Run();
+
+        DIContainerDemo.Run();
 
         Console.ReadLine();
     }
