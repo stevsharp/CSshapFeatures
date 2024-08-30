@@ -69,9 +69,13 @@ internal class DIContainerDemo
         // Simulate a DI container with a simple factory method
         serviceProvider = new Func<Type, object>(type =>
         {
-            if (type == typeof(IServiceC)) return new ServiceC();
-            if (type == typeof(IServiceA)) return CreateInstance<ServiceA>(serviceProvider);
-            if (type == typeof(IServiceB)) return CreateInstance<ServiceB>(serviceProvider);
+            if (type == typeof(IServiceC)) 
+                return CreateInstance<ServiceC>(serviceProvider); 
+            if (type == typeof(IServiceA)) 
+                return CreateInstance<ServiceA>(serviceProvider);
+            if (type == typeof(IServiceB)) 
+                return CreateInstance<ServiceB>(serviceProvider);
+
             throw new Exception("Type not registered.");
         });
 
