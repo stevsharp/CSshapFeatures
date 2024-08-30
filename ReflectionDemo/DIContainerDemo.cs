@@ -99,8 +99,8 @@ internal class DIContainerDemo
     {
         var constructor = typeof(T).GetConstructors().FirstOrDefault() ?? throw new Exception("No public constructors found.");
         var parameters = constructor.GetParameters();
-        var parameterInstances = parameters
-                            .Select(p => serviceProvider?.Invoke(p.ParameterType) ?? 
+        object?[] parameterInstances = parameters
+                            .Select(p => serviceProvider?.Invoke(p.ParameterType) ??
                              Activator.CreateInstance(p.ParameterType)).ToArray();
 
         return (T)constructor.Invoke(parameterInstances);
