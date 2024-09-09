@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionDemo", "Reflectio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingStragegyConsole", "SortingStragegyConsole\SortingStragegyConsole.csproj", "{38F73F33-15E6-40B5-AB95-DFDF20038F0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactoryConsole", "ConsoleApp1\AbstractFactoryConsole.csproj", "{02BB3F23-EACA-472E-A9AA-0BF6A36502A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{38F73F33-15E6-40B5-AB95-DFDF20038F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38F73F33-15E6-40B5-AB95-DFDF20038F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38F73F33-15E6-40B5-AB95-DFDF20038F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02BB3F23-EACA-472E-A9AA-0BF6A36502A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02BB3F23-EACA-472E-A9AA-0BF6A36502A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02BB3F23-EACA-472E-A9AA-0BF6A36502A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02BB3F23-EACA-472E-A9AA-0BF6A36502A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
