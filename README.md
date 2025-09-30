@@ -47,3 +47,15 @@ Write a program that:
 **Example Input:**
 ```txt
 This world is big, and this world is small.
+```
+Expected Output:
+
+world -> 2
+hello -> 2
+big   -> 1
+small -> 1
+
+Extra Challenge:
+
+-Use only LINQ for the counting logic.
+-Add an option to exclude stopwords (e.g., is, the, and, this).
