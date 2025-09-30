@@ -31,30 +31,19 @@ dotnet build
 dotnet run --project src/CSharpWeeklyChallenges
 ```
 
-📚 Challenges
-🏆 Challenge 01 – Word Frequency Counter
+## 📚 Challenges
 
-Task:
+### 🏆 Challenge 01 – Word Frequency Counter
+
+**Task:**  
 Write a program that:
+- Accepts a block of text (multi-line input).
+- Counts how many times each unique word appears.
+- Prints the top 5 most frequent words with their counts.
+- Ignores case and punctuation.
 
-Accepts a block of text (multi-line input).
-Counts how many times each unique word appears.
-Prints the top 5 most frequent words with their counts.
-Ignores case and punctuation.
+---
 
-Example Input:
-
+**Example Input:**
+```txt
 This world is big, and this world is small.
-
-
-Expected Output:
-
-world -> 2
-hello -> 2
-big   -> 1
-small -> 1
-
-Extra Challenge:
-
-Use only LINQ for the counting logic.
-Add an option to exclude stopwords (e.g., is, the, and, this).
