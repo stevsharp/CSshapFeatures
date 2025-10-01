@@ -4,7 +4,7 @@ while (true)
     Console.Clear();
     Console.WriteLine("===== C# Weekly Challenges =====");
     Console.WriteLine("1. Challenge 01 – Word Frequency Counter");
-    Console.WriteLine("2. Challenge 02 – (coming soon)");
+    Console.WriteLine("2. Challenge 02 – Custom LINQ Extension (ToChunks)");
     Console.WriteLine("3. Challenge 03 – (coming soon)");
     Console.WriteLine("0. Exit");
     Console.WriteLine("===============================");
@@ -18,7 +18,7 @@ while (true)
             RunChallenge01();
             break;
         case "2":
-            Console.WriteLine("Challenge 02 is coming soon!");
+            RunChallenge02();
             break;
         case "3":
             Console.WriteLine("Challenge 03 is coming soon!");
@@ -74,6 +74,25 @@ static void RunChallenge01()
     foreach (var item in frequencies.Take(5))
     {
         Console.WriteLine($"{item.Word} -> {item.Count}");
+    }
+
+    Console.WriteLine("\nPress any key to return to the menu...");
+    Console.ReadKey();
+}
+
+static void RunChallenge02()
+{
+    Console.Clear();
+    Console.WriteLine("=== Challenge 02: Custom LINQ Extension Method ===");
+
+    var numbers = Enumerable.Range(1, 10);
+
+    var chunks = numbers.ToChunks(3);
+
+    Console.WriteLine("Splitting 1–10 into chunks of 3:");
+    foreach (var chunk in chunks)
+    {
+        Console.WriteLine($"[{string.Join(", ", chunk)}]");
     }
 
     Console.WriteLine("\nPress any key to return to the menu...");
