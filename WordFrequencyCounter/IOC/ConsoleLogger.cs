@@ -1,9 +1,8 @@
-﻿namespace WordFrequencyCounter.IOC;
+﻿using static WordFrequencyCounter.IOC.ServiceContainer;
 
-public sealed partial class ServiceContainer
+namespace WordFrequencyCounter.IOC;
+
+public sealed class ConsoleLogger : ILogger
 {
-    public sealed class ConsoleLogger : ILogger
-    {
-        public void Log(string msg) => Console.WriteLine($"[LOG] {msg}");
-    }
+    public void Log(string msg) => Console.WriteLine($"[LOG] {msg}");
 }

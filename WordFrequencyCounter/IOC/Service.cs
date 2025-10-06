@@ -1,7 +1,6 @@
 ﻿namespace WordFrequencyCounter.IOC;
 
-public sealed partial class ServiceContainer
-{
+
     public sealed class Service : IService
     {
         public ILogger Logger { get; }
@@ -14,4 +13,3 @@ public sealed partial class ServiceContainer
             logger.Log($"Service constructed with Repo {repo.Id}");
         }
     }
-}

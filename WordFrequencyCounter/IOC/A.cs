@@ -1,10 +1,8 @@
-﻿namespace WordFrequencyCounter.IOC;
+﻿using static WordFrequencyCounter.IOC.ServiceContainer;
 
-public sealed partial class ServiceContainer
+namespace WordFrequencyCounter.IOC;
+
+public sealed class A
 {
-    // Types to demonstrate cycle detection: A -> B -> A
-    public sealed class A
-    {
-        public A(B b) { }
-    }
+    public A(B b) { }
 }
