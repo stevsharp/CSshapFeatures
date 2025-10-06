@@ -1,11 +1,14 @@
-﻿
+﻿using WordFrequencyCounter.IOC;
+
+using static WordFrequencyCounter.IOC.ServiceContainer;
+
 while (true)
 {
     Console.Clear();
     Console.WriteLine("===== C# Weekly Challenges =====");
     Console.WriteLine("1. Challenge 01 – Word Frequency Counter");
     Console.WriteLine("2. Challenge 02 – Custom LINQ Extension (ToChunks)");
-    Console.WriteLine("3. Challenge 03 – (coming soon)");
+    Console.WriteLine("3. Challenge 03 – Mini DI Container");
     Console.WriteLine("0. Exit");
     Console.WriteLine("===============================");
     Console.Write("Select a challenge: ");
@@ -21,7 +24,7 @@ while (true)
             RunChallenge02();
             break;
         case "3":
-            Console.WriteLine("Challenge 03 is coming soon!");
+            RunChallenge03();
             break;
         case "0":
             return;
@@ -30,6 +33,43 @@ while (true)
             break;
     }
 }
+
+static void RunChallenge03()
+{
+    Console.Clear();
+    Console.WriteLine("=== Challenge 03: Mini DI Container ===");
+
+    var c = new ServiceContainer();
+
+    c.Register<ILogger, ConsoleLogger>(ServiceLifetime.Singleton);
+    c.Register<IRepo, Repo>(ServiceLifetime.Transient);
+    c.Register<IService, Service>(ServiceLifetime.Transient);
+
+    var s1 = c.Resolve<IService>();
+    var s2 = c.Resolve<IService>();
+
+    Console.WriteLine($"s1 == s2? {ReferenceEquals(s1, s2)}  (expect: False)");
+    Console.WriteLine($"s1.Logger == s2.Logger? {ReferenceEquals(((Service)s1).Logger, ((Service)s2).Logger)}  (expect: True)");
+    Console.WriteLine($"s1.Repo == s2.Repo? {ReferenceEquals(((Service)s1).Repo, ((Service)s2).Repo)}  (expect: False)");
+
+    Console.WriteLine("\nCycle detection demo (expect exception):");
+    try
+    {
+        var c2 = new ServiceContainer();
+        c2.Register<A, A>();
+        c2.Register<B, B>();
+        var a = c2.Resolve<A>(); // A -> B -> A (cycle)
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Caught: {ex.Message}");
+    }
+
+    Console.WriteLine("\nPress any key to return to the menu...");
+    Console.ReadKey();
+}
+
+
 /// Challenge 01: Word Frequency Counter    
 /// 🏆 Challenge 1 Breakdown
 /// 1.Input Handling
