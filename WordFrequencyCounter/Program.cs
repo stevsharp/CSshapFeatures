@@ -1,7 +1,5 @@
 ﻿using WordFrequencyCounter.IOC;
 
-using static WordFrequencyCounter.IOC.ServiceContainer;
-
 while (true)
 {
     Console.Clear();
@@ -9,6 +7,7 @@ while (true)
     Console.WriteLine("1. Challenge 01 – Word Frequency Counter");
     Console.WriteLine("2. Challenge 02 – Custom LINQ Extension (ToChunks)");
     Console.WriteLine("3. Challenge 03 – Mini DI Container");
+    Console.WriteLine("4. Challenge 04 – Parallel.ForEachAsync");
     Console.WriteLine("0. Exit");
     Console.WriteLine("===============================");
     Console.Write("Select a challenge: ");
@@ -26,12 +25,75 @@ while (true)
         case "3":
             RunChallenge03();
             break;
-        case "0":
-            return;
+        case "4":
+            await RunChallenge04();
+            break;
         default:
             Console.WriteLine("Invalid choice. Please try again.");
             break;
     }
+}
+
+async Task RunChallenge04()
+{
+    var urls = new[]
+    {
+        "https://example.com",
+        "https://www.microsoft.com",
+        "https://www.github.com",
+        "https://dotnet.microsoft.com",
+    };
+
+    using var httpClient = new HttpClient();
+    var cts = new CancellationTokenSource();
+
+    _ = Task.Run(() =>
+    {
+        Console.WriteLine("Press any key to cancel...\n");
+        Console.ReadKey();
+        cts.Cancel();
+    });
+
+    var sw = System.Diagnostics.Stopwatch.StartNew();
+
+    var options = new ParallelOptions
+    {
+        MaxDegreeOfParallelism = 4,
+        CancellationToken = cts.Token
+    };
+
+    try {
+
+        var threadCounter = 0;
+
+        await Parallel.ForEachAsync(urls, options, async (url, token) =>
+        {
+            var currentThreadId = Interlocked.Increment(ref threadCounter);
+
+            Console.WriteLine($"Starting download: {url}");
+            var content = await httpClient.GetStringAsync(url, token);
+            Console.WriteLine($"Completed download: {url} (Length: {content.Length})");
+        });
+    }
+    catch (OperationCanceledException)
+    {
+        Console.WriteLine("\nOperation was canceled by the user.");
+    }
+    catch (AggregateException ae)
+    {
+        foreach (var ex in ae.InnerExceptions)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+    finally
+    {
+        sw.Stop();
+        Console.WriteLine($"\nTotal time: {sw.Elapsed.TotalSeconds:F2} seconds");
+        Console.WriteLine("Press any key to return to the menu...");
+        Console.ReadKey();
+    }
+
 }
 
 static void RunChallenge03()

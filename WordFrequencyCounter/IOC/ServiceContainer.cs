@@ -37,9 +37,12 @@ public sealed partial class ServiceContainer
         {
             lock (_lock)
             {
-                if (_singletons.TryGetValue(serviceType, out var existing)) return existing;
+                if (_singletons.TryGetValue(serviceType, out var existing)) 
+                    return existing;
+
                 var created = CreateInstance(desc, stack);
                 _singletons[serviceType] = created;
+
                 return created;
             }
         }
@@ -77,7 +80,8 @@ public sealed partial class ServiceContainer
                     }
                 }
 
-                if (ok) return Activator.CreateInstance(desc.ImplementationType, args)!;
+                if (ok) 
+                    return Activator.CreateInstance(desc.ImplementationType, args)!;
             }
 
             var tried = string.Join(Environment.NewLine, desc.ImplementationType
