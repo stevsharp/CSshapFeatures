@@ -55,7 +55,31 @@ hello -> 2
 big   -> 1
 small -> 1
 
-Extra Challenge:
 
+### 🏆 Challenge 02 – Custom LINQ Extension Method
+
+**Task:**  
+Write a **LINQ extension method** called `ToChunks<T>` that splits an `IEnumerable<T>` into smaller batches (chunks) of a given size.  
+
+---
+
+**Requirements:**
+- The extension method should be generic (`IEnumerable<T>`).  
+- It should return an `IEnumerable<IEnumerable<T>>`, where each inner collection is a chunk.  
+- If the final chunk has fewer items, return it as-is (do not pad).  
+- Throw an exception if the chunk size is less than 1.  
+
+---
+
+**Example Usage:**
+```csharp
+var numbers = Enumerable.Range(1, 10);
+var chunks = numbers.ToChunks(3);
+
+foreach (var chunk in chunks)
+{
+    Console.WriteLine($"[{string.Join(", ", chunk)}]");
+}
+```
 -Use only LINQ for the counting logic.
 -Add an option to exclude stopwords (e.g., is, the, and, this).
